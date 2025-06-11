@@ -22,7 +22,7 @@ load_dotenv()
 
 # Constants
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-DEFAULT_MODEL = "openai/gpt-4o"
+DEFAULT_MODEL = "qwen/qwen3-30b-a3b:free"
 MAX_TOKENS = 4000
 TEMPERATURE = 0.7
 THEMES = {
