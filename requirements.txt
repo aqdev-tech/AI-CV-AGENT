@@ -1,0 +1,38 @@
+# Core Streamlit and AI Libraries
+streamlit
+streamlit-chat
+streamlit-option-menu
+streamlit-lottie
+streamlit-javascript
+
+# AI and ML Libraries
+langchain
+sentence-transformers
+faiss-cpu
+openai
+
+# Data Processing
+pandas
+numpy
+plotly
+
+# Web and API
+requests
+python-dotenv
+
+# Text Processing
+regex
+
+# Optional: PDF generation
+reportlab
+fpdf
+pdfkit
+
+# Optional: Database drivers (for future scaling)
+# pymongo
+# redis
+
+# Development and Testing
+# pytest
+# black
+# flake8
