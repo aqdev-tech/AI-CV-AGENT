@@ -169,6 +169,35 @@ def analyze_job_fit(job_description: str, cv_data: Dict) -> str:
         }
     )
 
+# NEW: Provide format optimization suggestions for the CV
+
+def format_optimization_suggestions(cv_data: Dict) -> str:
+    """Analyze the CV data and return formatting & ATS-friendliness suggestions."""
+    prompt_template = """
+    You are an expert resume reviewer and ATS optimisation specialist.
+
+    Review the following CV data supplied in JSON format and provide clear, actionable recommendations to improve:
+    1. Overall formatting and consistency
+    2. Section ordering and length
+    3. Visual design choices (theme, fonts, whitespace)
+    4. ATS compatibility (keywords, structure, file types)
+
+    Return your feedback using markdown with the following headings:
+    ## Overall Formatting
+    ## Section Ordering & Length
+    ## Visual Design
+    ## ATS Optimisation
+
+    Keep each section concise with bullet-pointed suggestions (max 4-6 bullets per heading).
+
+    CV Data:
+    {cv_data}
+    """
+    return call_langchain_chain(
+        prompt_template,
+        {"cv_data": json.dumps(cv_data)}
+    )
+
 def generate_cover_letter(job_description: str, company: str) -> str:
     prompt_template = """
     Write a compelling cover letter for this job:
@@ -1401,7 +1430,7 @@ def generate_html_cv():
                     <span class="job-title">{cert['name']}</span>, 
                     <span class="company">{cert['issuer']}</span>
                     <span class="date">{cert.get('date', '')}</span>
-                    {f'<div><a href="{cert["url"]}">{cert["url"]}</a></div>' if cert.get('url') else ''}
+                    %s
                 </div>
                 """
             
